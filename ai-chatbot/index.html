@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuralChat Luxe — Elite AI Companion</title>
+  <meta name="description" content="A premium AI-powered chatbot featuring sophisticated text conversation and high-fidelity image generation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-icon">✦</span>
+        <h1>NeuralChat</h1>
+      </div>
+      <p class="tagline">AI-Powered Chat & Image Generation</p>
+    </div>
+    <button id="settingsBtn" class="settings-btn" title="API Settings">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Main Content -->
+  <main class="app-main">
+
+    <!-- Chat Panel -->
+    <section class="panel chat-panel" id="chatPanel">
+      <div class="panel-header">
+        <span class="panel-icon">💬</span>
+        <h2>Chat</h2>
+        <span class="status-dot online"></span>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="welcome-message">
+          <span class="welcome-icon">🤖</span>
+          <p>Hello! I'm your AI assistant. Ask me anything.</p>
+        </div>
+      </div>
+
+      <div class="chat-input-area">
+        <div class="input-wrapper">
+          <textarea
+            id="chatInput"
+            placeholder="Type your message…"
+            rows="1"
+            autocomplete="off"
+          ></textarea>
+          <button id="sendBtn" class="send-btn" title="Send message">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image Generation Panel -->
+    <section class="panel image-panel" id="imagePanel">
+      <div class="panel-header">
+        <span class="panel-icon">🎨</span>
+        <h2>Image Generator</h2>
+      </div>
+
+      <div class="image-display" id="imageDisplay">
+        <div class="image-placeholder">
+          <span class="placeholder-icon">🖼️</span>
+          <p>Your generated image will appear here</p>
+        </div>
+      </div>
+
+      <div class="image-input-area">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            id="imagePrompt"
+            placeholder="Describe the image you want…"
+            autocomplete="off"
+          />
+          <button id="generateBtn" class="generate-btn" title="Generate image">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Image History -->
+      <div class="image-history" id="imageHistory"></div>
+    </section>
+
+  </main>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>API Settings</h3>
+        <button id="closeSettings" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="settings-hint">To use the chatbot and image generator, you must provide your own API keys. These are stored securely in your browser's local storage.</p>
+        
+        <div class="settings-group">
+          <label for="openrouterKey">OpenRouter API Key (Text Chat)</label>
+          <div class="input-with-hint">
+            <input type="password" id="openrouterKey" placeholder="sk-or-v1-..." />
+            <span class="input-hint">Required for Chat. <a href="https://openrouter.ai/keys" target="_blank">Get your key here</a></span>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <label for="hfToken">Hugging Face Token</label>
+          <div class="input-with-hint">
+            <input type="password" id="hfToken" placeholder="hf_..." />
+            <span class="input-hint">Used for Images. <a href="https://huggingface.co/settings/tokens" target="_blank">Get token</a></span>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <label for="chatModel">Chat Model</label>
+          <select id="chatModel">
+            <option value="mock/demo-model">Demo Mode (Mock Response - No Key Required)</option>
+            <option value="google/gemini-flash-1.5:free">Gemini 1.5 Flash (Free)</option>
+            <option value="mistralai/mistral-7b-instruct:free">Mistral 7B Instruct (Free)</option>
+            <option value="openai/gpt-3.5-turbo">GPT-3.5 Turbo (Paid)</option>
+            <option value="google/gemini-pro">Gemini Pro</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="saveSettings" class="primary-btn">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
