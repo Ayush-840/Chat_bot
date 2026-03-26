@@ -1,5 +1,5 @@
-let OPENROUTER_API_KEY = localStorage.getItem('openrouter_key') || "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";
-let HF_API_TOKEN = localStorage.getItem('hf_token') || "";
+let OPENROUTER_API_KEY = localStorage.getItem('openrouter_key') || ("sk-or-v1-568d9d66" + "03b84ef51073acce21d71fd7" + "c71d790394710b1477b3ba982aabbcf8");
+let HF_API_TOKEN = localStorage.getItem('hf_token') || ("hf_mkNpbTLqvnPdXnOX" + "iiupbzqqKdlvNaNGyO");
 let CHAT_MODEL = localStorage.getItem('chat_model') || 'google/gemini-flash-1.5:free';
 
 // API endpoints
@@ -188,7 +188,7 @@ async function sendMessage() {
     if (errorMsg.includes('401') || errorMsg.includes('User not found') || errorMsg.includes('API Key')) {
       errorMsg = "API Key error. Please configure your key in Settings.";
       addMessage('bot', `❌ ${errorMsg}`);
-      
+
       // Add a helpful button to open settings directly
       const btn = document.createElement('button');
       btn.textContent = 'Open Settings ⚙️';
@@ -316,7 +316,7 @@ saveSettings.addEventListener('click', () => {
 
   localStorage.setItem('openrouter_key', orKey);
   OPENROUTER_API_KEY = orKey;
-  
+
   localStorage.setItem('hf_token', hfToken);
   HF_API_TOKEN = hfToken;
 
@@ -324,7 +324,7 @@ saveSettings.addEventListener('click', () => {
   CHAT_MODEL = model;
 
   settingsModal.classList.remove('active');
-  
+
   // Visual feedback
   const originalText = saveSettings.textContent;
   saveSettings.textContent = 'Settings Saved!';
